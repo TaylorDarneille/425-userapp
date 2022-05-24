@@ -1,0 +1,21 @@
+model/table name: user
+
+firstName: VARCHAR
+lastName: VARCHAR
+age: INTEGER
+email: VARCHAR
+
+sequelize cli command:
+# sequelize model:create --name 'table name singular' --attributes colName:TYPE,otherColName:TYPE
+sequelize model:create --name user --attributes firstName:string,lastName:string,age:integer,email:string
+
+SEQUELIZE SETUP STEPS
+
+(project from scratch)
+0. install sequelize and pg packages
+1. sequelize init -- creates config json and model/migration folders
+2. update config.json with dialect and db name
+(start here if working with a cloned project)
+3. create the db with `createdb dbname`
+4. create models with sequelize model:create
+5. migrate models with sequelize db:migrate 
