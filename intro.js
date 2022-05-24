@@ -46,24 +46,65 @@ async function userCRUD() {
 
 		// find or create -- either find something and if it is not found -- create it
 		// return [{ user }, true/false boolean (if they where created)]
-		const [user, created] = await db.user.findOrCreate({
-			// what to search for
-			where: {
-				firstName: 'April'
-			},
-			// what to add if not found
-			defaults: {
-				// everything that is not in the where clause
-				lastName: 'Gonzales',
-				age: 28,
-				email: 'april.gonzales@generalassemb.ly'
-			}
-		})
-		console.log(`${user.firstName} was created? ${created}`)
+		// const [user, created] = await db.user.findOrCreate({
+		// 	// what to search for
+		// 	where: {
+		// 		firstName: 'April'
+		// 	},
+		// 	// what to add if not found
+		// 	defaults: {
+		// 		// everything that is not in the where clause
+		// 		lastName: 'Gonzales',
+		// 		age: 28,
+		// 		email: 'april.gonzales@generalassemb.ly'
+		// 	}
+		// })
+		// console.log(`${user.firstName} was created? ${created}`)
 
 		// UPDATE 
+		// method 1: .update()
+		// returns the number of rows changed
+		// update many things at once
+		// const numRowsChanged = await db.user.update({
+		// 	// what to change
+		// 	lastName: 'Taco'
+		// }, {
+		// 	// where clause
+		// 	where: {
+		// 		firstName: 'Weston'
+		// 	}
+		// })
+		// console.log(numRowsChanged)
+
+		// method 2: find a single instance, update it, and save it
+		// const numberOne = await db.user.findByPk(1) // first user in the db
+		// // change the data 
+		// numberOne.firstName = 'asfdgasfdgasdgfasdgfs'
+		// // save the model instance -- async operation
+		// await numberOne.save() // this is when it becomes saved in the database
+		// console.log(numberOne)
 
 		// DESTROY
+		// method 1: destroy many
+		// const numRowsDeleted = await db.user.destroy({
+		// 	where: {
+		// 		// destoy all with the last name taco
+		// 		lastName: 'Taco'
+		// 	}
+		// })
+		// console.log(numRowsDeleted)
+
+		// method 2: have an instance self destruct
+		// find an instance
+		const instance = await db.user.findOne({
+			where: {
+				lastName: 'Bailey'
+			}
+		})
+
+		// await the destruction
+		await instance.destroy()
+		// ??? can't console log -- check psql
 	} catch (err) {
 		// we wind up if there is an error
 		console.log(err)
