@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      // user is the one in a 1:M relationship
+      models.user.hasMany(models.pet)
     }
   }
   user.init({

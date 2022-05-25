@@ -5,12 +5,12 @@ async function userCRUD() {
 		// CREATE
 		// run async code
 		// return an instance of the newly created user model
-		// const newUser = await db.user.create({
-		// 	firstName: 'June',
-		// 	lastName: 'Holmberg',
-		// 	age: 34,
-		// 	email: 'june.holmberg@generalassemb.ly'
-		// })
+		const newUser = await db.user.create({
+			firstName: 'Weston',
+			lastName: 'Bailey',
+			age: 34,
+			email: 'weston.bailey@generalassemb.ly'
+		})
 		// console.log(newUser.firstName) // dont haev to say dataValues
 
 		// READ 
@@ -96,14 +96,14 @@ async function userCRUD() {
 
 		// method 2: have an instance self destruct
 		// find an instance
-		const instance = await db.user.findOne({
-			where: {
-				lastName: 'Bailey'
-			}
-		})
+		// const instance = await db.user.findOne({
+		// 	where: {
+		// 		lastName: 'Bailey'
+		// 	}
+		// })
 
-		// await the destruction
-		await instance.destroy()
+		// // await the destruction
+		// await instance.destroy()
 		// ??? can't console log -- check psql
 	} catch (err) {
 		// we wind up if there is an error

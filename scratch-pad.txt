@@ -19,3 +19,19 @@ SEQUELIZE SETUP STEPS
 3. create the db with `createdb dbname`
 4. create models with sequelize model:create
 5. migrate models with sequelize db:migrate 
+
+# SETTING UP 1:M
+## 1 user can have many pets
+
+table name: pets
+
+name:VARCHAR(255)
+species:VARCHAR(255)
+desription:TEXT
+userId:FOREIGN KEY REF user.id
+
+### Step 1: create the model (you are good to go on migration after this step)
+
+sequelize model:create --name pet --attributes name:string,species:string,description:text,userId:integer
+
+### Step 2: update the static associate method in both models
