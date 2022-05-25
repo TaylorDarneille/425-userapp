@@ -47,7 +47,7 @@ const oneToManyCRUD = async () => {
 		// hasMany mixin methods availible
 		// user.getPets()
 		// user.countPets()
-		console.log(await foundUser.countPets())
+		// console.log(await foundUser.countPets())
 		// user.hasPet()
 		// user.hasPets()
 		// user.setPets()
@@ -56,6 +56,16 @@ const oneToManyCRUD = async () => {
 		// user.removePet()
 		// user.removePets()
 		// user.createPet()
+
+		// 'eager loading' or includes
+		const foundJune = await db.user.findOne({
+			where: { 
+				firstName: 'June'
+			 },
+			 include: [db.pet, /* db.otherRelationship, db.etc */ ] // will give June a .pets props with all of her pets
+		})
+		console.log(foundJune)
+		foundJune.pets.forEach(pet => console.log(`June has a ${pet.name}`))	
 
 	} catch (err) {
 		console.warn('🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥 error:', err)
